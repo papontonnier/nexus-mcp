@@ -7,7 +7,7 @@ Modular Model Context Protocol platform for software integration, technical anal
 - Integration Hub — JSON, CSV, XML analysis and mappings
 - Knowledge Engine — technical knowledge and document search
 - Developer Toolkit — project inspection and diagnostics
-- Finance Solutions — Jedox and Agicap integration utilities
+- Finance Solutions — financial data quality, dimension checks and integration mappings (generic layouts; vendor connectors only from verified documentation)
 - Agent Lab — deterministic tool workflows, with optional future agent orchestration
 - API Explorer — OpenAPI inspection and payload validation
 
@@ -17,7 +17,7 @@ TypeScript monorepo: MCP server, Fastify API, React web app, and shared business
 
 ## Status
 
-v0.6 — Integration Hub, Knowledge Engine and Developer Toolkit are available; Finance Solutions, Agent Lab and API Explorer are planned. Local, single-user use only: do not use with confidential production data until security controls are validated.
+v0.7 — Integration Hub, Knowledge Engine, Developer Toolkit and Finance Solutions are available; Agent Lab and API Explorer are planned. Local, single-user use only: do not use with confidential production data until security controls are validated.
 
 ## Getting started
 
