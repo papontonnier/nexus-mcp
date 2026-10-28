@@ -4,7 +4,8 @@
 - The web app calls the Fastify API; both MCP and API import the same domain package.
 - API binds to localhost only. Do not expose it publicly without authentication, authorization, and network hardening.
 - JSON analysis is deterministic; no LLM API keys or model billing required.
-- Implemented modules: Integration Hub (v0.2–v0.4), Knowledge Engine (v0.5), Developer Toolkit (v0.6), Finance Solutions (v0.7). Agent Lab and API Explorer remain planned.
+- Implemented modules: Integration Hub (v0.2–v0.4), Knowledge Engine (v0.5), Developer Toolkit (v0.6), Finance Solutions (v0.7), Agent Lab (v0.8). API Explorer remains planned.
+- Agent Lab composes the other domain packages through a tool catalog (`createNexusCatalog`). It never calls the HTTP API, so workflows behave the same from the web app and from MCP.
 - Domain packages may build on each other: `@nexus/finance-solutions` reuses the Integration Hub CSV parser rather than duplicating it.
 - Finance Solutions is stateless: datasets are sent with each request and never stored.
 
