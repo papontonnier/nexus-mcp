@@ -11,7 +11,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
     "@nexus/integration-hub": "workspace:*",
-    "zod": "^3.25.0"
+    "zod": "^3.25.0",
+    "@nexus/knowledge-engine": "workspace:*"
   },
   "devDependencies": {
     "tsx": "^4.19.0",
