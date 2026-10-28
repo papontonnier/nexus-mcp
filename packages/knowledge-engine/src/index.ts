@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import { mkdir, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import pdf from "pdf-parse";
 
 export type DocumentFormat = "txt" | "md" | "pdf";
@@ -26,7 +27,7 @@ function snippet(text: string, term: string): string {
 }
 export class KnowledgeStore {
   private readonly root: string;
-  constructor(root = process.env.NEXUS_KNOWLEDGE_DIR || path.resolve(process.cwd(), ".nexus", "knowledge")) { this.root = path.resolve(root); }
+  constructor(root = process.env.NEXUS_KNOWLEDGE_DIR || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../.nexus/knowledge")) { this.root = path.resolve(root); }
   private dir(id: string) { if (!isValidId(id)) throw new Error("Invalid document ID"); return path.join(this.root, id); }
   private async metadata(id: string): Promise<DocumentInfo> {
     try { return JSON.parse(await readFile(path.join(this.dir(id), "metadata.json"), "utf8")) as DocumentInfo; }
