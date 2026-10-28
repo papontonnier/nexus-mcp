@@ -17,7 +17,7 @@ TypeScript monorepo: MCP server, Fastify API, React web app, and shared business
 
 ## Status
 
-v0.7 — Integration Hub, Knowledge Engine, Developer Toolkit and Finance Solutions are available; Agent Lab and API Explorer are planned. Local, single-user use only: do not use with confidential production data until security controls are validated.
+v0.8 — Integration Hub, Knowledge Engine, Developer Toolkit, Finance Solutions and Agent Lab are available; API Explorer is planned. Local, single-user use only: do not use with confidential production data until security controls are validated.
 
 ## Getting started
 

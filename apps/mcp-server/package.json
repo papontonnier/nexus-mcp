@@ -15,7 +15,8 @@
     "zod": "^3.25.0",
     "@nexus/knowledge-engine": "workspace:*",
     "@nexus/developer-toolkit": "workspace:*",
-    "@nexus/finance-solutions": "workspace:*"
+    "@nexus/finance-solutions": "workspace:*",
+    "@nexus/agent-lab": "workspace:*"
   },
   "devDependencies": {
     "tsx": "^4.19.0",
