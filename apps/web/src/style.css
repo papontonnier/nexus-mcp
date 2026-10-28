@@ -27,6 +27,7 @@
 [data-theme=dark] .diff-pill.added{background:#1a3e31;color:#79dba4}[data-theme=dark] .diff-pill.removed{background:#492c36;color:#ff9cae}[data-theme=dark] .diff-pill.type_changed{background:#453926;color:#f5c77a}
 .result-empty{display:flex;align-items:center;gap:10px;padding:30px 20px;background:var(--bg);border:1px dashed var(--line);border-radius:11px;color:var(--muted);font-size:12px}
 @media(prefers-reduced-motion:reduce){.module-card{transition:none}}
+@media(min-width:761px){.mobile-menu{display:none}}
 
 
 /* Knowledge Engine */

@@ -18,6 +18,7 @@
     "typescript": "^5.8.3",
     "@vitejs/plugin-react": "^4.3.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@nexus/developer-toolkit": "workspace:*"
   }
 }

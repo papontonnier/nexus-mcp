@@ -17,7 +17,17 @@ TypeScript monorepo: MCP server, Fastify API, React web app, and shared business
 
 ## Status
 
-Foundation phase — initial scaffolding in progress. Do not use with confidential production data until security controls are validated.
+v0.6 — Integration Hub, Knowledge Engine and Developer Toolkit are available; Finance Solutions, Agent Lab and API Explorer are planned. Local, single-user use only: do not use with confidential production data until security controls are validated.
+
+## Getting started
+
+```bash
+pnpm install
+pnpm build
+pnpm dev
+```
+
+The web app runs on http://127.0.0.1:5173 and the API on 127.0.0.1:3001. To let the Developer Toolkit inspect local projects, list them in `.nexus/developer/projects.json` (see `docs/specifications/developer-toolkit.md`).
 
 ## License
 

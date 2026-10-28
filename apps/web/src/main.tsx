@@ -2,8 +2,9 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import KnowledgeWorkspace from "./KnowledgeWorkspace";
+import DeveloperWorkspace from "./modules/developer/DeveloperWorkspace";
 import { AnalysisResult, CodeEditor, toolIcons } from "./IntegrationResults";
-import { LayoutDashboard, BookOpen, Blocks, Wallet, Workflow, Network, Moon, Sun, Menu, ArrowUpRight, Copy, Check } from "lucide-react";
+import { LayoutDashboard, BookOpen, Blocks, FolderCode, Wallet, Workflow, Network, Moon, Sun, Menu, ArrowUpRight, Copy, Check } from "lucide-react";
 
 type ModuleId = "overview" | "integration" | "knowledge" | "developer" | "finance" | "agents" | "api";
 type ToolId = "json" | "csv" | "compare";
@@ -11,7 +12,7 @@ type HistoryEntry = { id: number; tool: ToolId; time: string; result: string };
 const modules: { id: ModuleId; icon: React.ComponentType<{ size?: number }>; title: string; subtitle: string; ready: boolean }[] = [
   { id: "integration", icon: Blocks, title: "Integration Hub", subtitle: "Structures, mappings & validation", ready: true },
   { id: "knowledge", icon: BookOpen, title: "Knowledge Engine", subtitle: "Search & document intelligence", ready: true },
-  { id: "developer", icon: LayoutDashboard, title: "Developer Toolkit", subtitle: "Repository insights & dependencies", ready: false },
+  { id: "developer", icon: FolderCode, title: "Developer Toolkit", subtitle: "Repository insights & dependencies", ready: true },
   { id: "finance", icon: Wallet, title: "Finance Solutions", subtitle: "Jedox, Agicap & financial datasets", ready: false },
   { id: "agents", icon: Workflow, title: "Agent Lab", subtitle: "Workflows & execution history", ready: false },
   { id: "api", icon: Network, title: "API Explorer", subtitle: "OpenAPI & payload validation", ready: false }
@@ -61,7 +62,7 @@ function App() {
   const selected = modules.find(m => m.id === page);
   return <div className="app-shell">
     <aside className={mobileNav ? "sidebar open" : "sidebar"}>
-      <div className="brand"><span className="brand-symbol">✳</span><span>NEXUS <small>MCP</small></span><span className="brand-version">0.5</span></div>
+      <div className="brand"><span className="brand-symbol">✳</span><span>NEXUS <small>MCP</small></span><span className="brand-version">0.6</span></div>
       <div className="sidebar-caption">WORKSPACE</div>
       <button className={page === "overview" ? "nav-item selected" : "nav-item"} onClick={() => navigate("overview")}><span><LayoutDashboard size={18} /></span> Overview</button>
       <div className="sidebar-caption module-caption">MODULES</div>
@@ -74,8 +75,8 @@ function App() {
       <main className="main-content">
         {page === "overview" ? <>
           <div className="eyebrow">YOUR PERSONAL INTELLIGENCE WORKSPACE</div>
-          <div className="hero-row"><div><h1>Welcome to Nexus<span className="accent">.</span></h1><p className="lead">One workspace. Six connected capabilities. Your tools, your data, your control.</p></div><span className="version-pill">● Knowledge v0.5</span></div>
-          <div className="stats-grid"><div className="stat-card"><span>Modules</span><strong>06</strong><small>Designed for your workflow</small></div><div className="stat-card"><span>Available tools</span><strong>07</strong><small>Integration + Knowledge</small></div><div className="stat-card"><span>Execution</span><strong>Local</strong><small>No paid AI API required</small></div></div>
+          <div className="hero-row"><div><h1>Welcome to Nexus<span className="accent">.</span></h1><p className="lead">One workspace. Six connected capabilities. Your tools, your data, your control.</p></div><span className="version-pill">● Developer Toolkit v0.6</span></div>
+          <div className="stats-grid"><div className="stat-card"><span>Modules</span><strong>06</strong><small>Designed for your workflow</small></div><div className="stat-card"><span>Available tools</span><strong>11</strong><small>Integration · Knowledge · Developer</small></div><div className="stat-card"><span>Execution</span><strong>Local</strong><small>No paid AI API required</small></div></div>
           <div className="section-heading"><div><h2>Explore your modules</h2><p>Purpose-built capabilities, connected through MCP.</p></div></div>
           <div className="module-grid">{modules.map(m => <button className="module-card" key={m.id} onClick={() => navigate(m.id)}><div className="module-card-top"><span className="module-icon"><m.icon size={23} /></span><span className={m.ready ? "chip active" : "chip"}>{m.ready ? "Available" : "Planned"}</span></div><h3>{m.title}</h3><p>{m.subtitle}</p><span className="module-arrow"><ArrowUpRight size={17} /></span></button>)}</div>
         </> : page === "integration" ? <>
@@ -88,7 +89,7 @@ function App() {
           </div>
           <div className="workspace-panel result-panel"><div className="panel-heading"><div><h2>Output</h2><p>Structured result from the shared analysis engine.</p></div>{result && <button className="secondary-button copy-button" onClick={() => navigator.clipboard.writeText(result).then(() => { setCopied(true); window.setTimeout(() => setCopied(false), 1800); }).catch(() => setError("Clipboard unavailable"))}>{copied ? <Check size={15} /> : <Copy size={15} />}{copied ? "Copied" : "Copy JSON"}</button>}</div>{error ? <div role="alert" className="error-box">{error}</div> : result ? <AnalysisResult tool={tool} result={result} /> : <div className="result-empty">Run an analysis to see structured results here.</div>}</div>
           {history.length > 0 && <div className="workspace-panel"><div className="panel-heading"><div><h2>Recent runs</h2><p>Session history · not persisted</p></div></div><div className="history-list">{history.map(h => <button key={h.id} onClick={() => { setTool(h.tool); setResult(h.result); setError(""); }}><span>{toolNames[h.tool]}</span><time>{h.time}</time><span>↗</span></button>)}</div></div>}
-        </> : page === "knowledge" ? <KnowledgeWorkspace /> : <>
+        </> : page === "knowledge" ? <KnowledgeWorkspace /> : page === "developer" ? <DeveloperWorkspace /> : <>
           <div className="eyebrow">NEXUS MODULE / ROADMAP</div><div className="placeholder-icon">{selected && <selected.icon size={32} />}</div><h1>{selected?.title}<span className="accent">.</span></h1><p className="lead">{selected?.subtitle}</p><div className="coming-card"><span className="chip">Planned</span><h2>Built into the roadmap.</h2><p>This module is part of the six-module NEXUS architecture. Its tools and workflows will be implemented in a future iteration.</p><button className="secondary-button" onClick={() => navigate("overview")}>← Back to overview</button></div>
         </>}
       </main>
