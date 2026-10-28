@@ -3,7 +3,7 @@ import Fastify from "fastify";
 import { analyzeDataStructure } from "@nexus/integration-hub";
 import { analyzeCsv } from "@nexus/integration-hub/csv";
 import { compareJsonSchemas } from "@nexus/integration-hub/compare";
-const app = Fastify({ logger: true, bodyLimit: 1_000_000 });
+const app = Fastify({ logger: true, bodyLimit: 7_000_000 });
 app.get("/health", async () => ({ status: "ok", service: "nexus-api" }));
 app.post("/api/analyze/json", async (request) => analyzeDataStructure(request.body));
 app.post<{ Body: { csv: string; delimiter?: string } }>("/api/analyze/csv", {
