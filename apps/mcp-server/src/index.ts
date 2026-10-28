@@ -6,8 +6,9 @@ import { analyzeDataStructure } from "@nexus/integration-hub";
 import { analyzeCsv } from "@nexus/integration-hub/csv";
 import { compareJsonSchemas } from "@nexus/integration-hub/compare";
 import { registerDeveloperTools } from "./tools/developer.js";
+import { registerFinanceTools } from "./tools/finance.js";
 
-const server = new McpServer({ name: "nexus-mcp", version: "0.6.0" });
+const server = new McpServer({ name: "nexus-mcp", version: "0.7.0" });
 server.tool("analyze_data_structure", "Analyze a JSON document's field structure", {
   json: z.string().max(1_000_000)
 }, async ({ json }) => {
@@ -48,4 +49,5 @@ server.tool("import_knowledge_document", "Import a TXT, MD or PDF document as ba
 });
 
 registerDeveloperTools(server);
+registerFinanceTools(server);
 await server.connect(new StdioServerTransport());

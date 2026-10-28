@@ -20,11 +20,12 @@ test("built stdio server exposes every NEXUS tool", async t => {
   const client = new Client({ name: "stdio-smoke-test", version: "0.0.0" });
   t.after(async () => { await client.close(); await rm(base, { recursive: true, force: true }); });
   await client.connect(transport);
-  assert.equal(client.getServerVersion()?.version, "0.6.0");
+  assert.equal(client.getServerVersion()?.version, "0.7.0");
   const { tools } = await client.listTools();
   assert.deepEqual(tools.map(tool => tool.name).sort(), [
-    "analyze_csv", "analyze_data_structure", "analyze_dependencies", "compare_json_schemas", "get_document", "get_project_structure",
-    "import_knowledge_document", "inspect_project", "list_developer_projects", "list_knowledge_sources", "search_knowledge"
+    "analyze_csv", "analyze_data_structure", "analyze_dependencies", "analyze_financial_dataset", "compare_json_schemas", "get_document",
+    "get_project_structure", "import_knowledge_document", "inspect_project", "list_developer_projects", "list_knowledge_sources",
+    "prepare_finance_mapping", "search_knowledge", "validate_financial_dimensions"
   ]);
   const result = await client.callTool({ name: "list_developer_projects", arguments: {} }) as { content: { text: string }[] };
   assert.equal(JSON.parse(result.content[0].text).projects[0].id, "fixture");
