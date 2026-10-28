@@ -7,8 +7,11 @@ import { analyzeCsv } from "@nexus/integration-hub/csv";
 import { compareJsonSchemas } from "@nexus/integration-hub/compare";
 import { registerDeveloperTools } from "./tools/developer.js";
 import { registerFinanceTools } from "./tools/finance.js";
+import { registerAgentTools } from "./tools/agents.js";
+import { AgentLab, createNexusCatalog } from "@nexus/agent-lab";
+import { DeveloperToolkit } from "@nexus/developer-toolkit";
 
-const server = new McpServer({ name: "nexus-mcp", version: "0.7.0" });
+const server = new McpServer({ name: "nexus-mcp", version: "0.8.0" });
 server.tool("analyze_data_structure", "Analyze a JSON document's field structure", {
   json: z.string().max(1_000_000)
 }, async ({ json }) => {
@@ -48,6 +51,8 @@ server.tool("import_knowledge_document", "Import a TXT, MD or PDF document as ba
   } catch (e) { return { isError: true, content: [{ type: "text" as const, text: String(e) }] }; }
 });
 
-registerDeveloperTools(server);
+const developer = new DeveloperToolkit();
+registerDeveloperTools(server, developer);
 registerFinanceTools(server);
+registerAgentTools(server, new AgentLab({ catalog: createNexusCatalog({ knowledge, developer }) }));
 await server.connect(new StdioServerTransport());
