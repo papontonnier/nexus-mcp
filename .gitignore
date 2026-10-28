@@ -7,3 +7,6 @@ dist/
 *.sqlite
 *.sqlite3
 .DS_Store
+
+# Local private knowledge documents
+.nexus/
