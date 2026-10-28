@@ -2,6 +2,7 @@ import { KnowledgeStore } from "@nexus/knowledge-engine";
 import { DeveloperToolkit } from "@nexus/developer-toolkit";
 import Fastify from "fastify";
 import { developerRoutes } from "./routes/developer.js";
+import { financeRoutes } from "./routes/finance.js";
 import { analyzeDataStructure } from "@nexus/integration-hub";
 import { analyzeCsv } from "@nexus/integration-hub/csv";
 import { compareJsonSchemas } from "@nexus/integration-hub/compare";
@@ -44,4 +45,5 @@ app.delete<{ Params: { id: string } }>("/api/knowledge/documents/:id", async (re
 });
 
 await app.register(developerRoutes, { prefix: "/api/developer", toolkit: new DeveloperToolkit() });
+await app.register(financeRoutes, { prefix: "/api/finance" });
 await app.listen({ port: 3001, host: "127.0.0.1" });
