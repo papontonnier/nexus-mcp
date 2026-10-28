@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import KnowledgeWorkspace from "./KnowledgeWorkspace";
 import { AnalysisResult, CodeEditor, toolIcons } from "./IntegrationResults";
 import { LayoutDashboard, BookOpen, Blocks, Wallet, Workflow, Network, Moon, Sun, Menu, ArrowUpRight, Copy, Check } from "lucide-react";
 
@@ -9,7 +10,7 @@ type ToolId = "json" | "csv" | "compare";
 type HistoryEntry = { id: number; tool: ToolId; time: string; result: string };
 const modules: { id: ModuleId; icon: React.ComponentType<{ size?: number }>; title: string; subtitle: string; ready: boolean }[] = [
   { id: "integration", icon: Blocks, title: "Integration Hub", subtitle: "Structures, mappings & validation", ready: true },
-  { id: "knowledge", icon: BookOpen, title: "Knowledge Engine", subtitle: "Search & document intelligence", ready: false },
+  { id: "knowledge", icon: BookOpen, title: "Knowledge Engine", subtitle: "Search & document intelligence", ready: true },
   { id: "developer", icon: LayoutDashboard, title: "Developer Toolkit", subtitle: "Repository insights & dependencies", ready: false },
   { id: "finance", icon: Wallet, title: "Finance Solutions", subtitle: "Jedox, Agicap & financial datasets", ready: false },
   { id: "agents", icon: Workflow, title: "Agent Lab", subtitle: "Workflows & execution history", ready: false },
@@ -60,7 +61,7 @@ function App() {
   const selected = modules.find(m => m.id === page);
   return <div className="app-shell">
     <aside className={mobileNav ? "sidebar open" : "sidebar"}>
-      <div className="brand"><span className="brand-symbol">✳</span><span>NEXUS <small>MCP</small></span><span className="brand-version">0.3</span></div>
+      <div className="brand"><span className="brand-symbol">✳</span><span>NEXUS <small>MCP</small></span><span className="brand-version">0.5</span></div>
       <div className="sidebar-caption">WORKSPACE</div>
       <button className={page === "overview" ? "nav-item selected" : "nav-item"} onClick={() => navigate("overview")}><span><LayoutDashboard size={18} /></span> Overview</button>
       <div className="sidebar-caption module-caption">MODULES</div>
@@ -73,8 +74,8 @@ function App() {
       <main className="main-content">
         {page === "overview" ? <>
           <div className="eyebrow">YOUR PERSONAL INTELLIGENCE WORKSPACE</div>
-          <div className="hero-row"><div><h1>Welcome to Nexus<span className="accent">.</span></h1><p className="lead">One workspace. Six connected capabilities. Your tools, your data, your control.</p></div><span className="version-pill">● Foundation v0.3</span></div>
-          <div className="stats-grid"><div className="stat-card"><span>Modules</span><strong>06</strong><small>Designed for your workflow</small></div><div className="stat-card"><span>Available tools</span><strong>03</strong><small>Integration Hub</small></div><div className="stat-card"><span>Execution</span><strong>Local</strong><small>No paid AI API required</small></div></div>
+          <div className="hero-row"><div><h1>Welcome to Nexus<span className="accent">.</span></h1><p className="lead">One workspace. Six connected capabilities. Your tools, your data, your control.</p></div><span className="version-pill">● Knowledge v0.5</span></div>
+          <div className="stats-grid"><div className="stat-card"><span>Modules</span><strong>06</strong><small>Designed for your workflow</small></div><div className="stat-card"><span>Available tools</span><strong>07</strong><small>Integration + Knowledge</small></div><div className="stat-card"><span>Execution</span><strong>Local</strong><small>No paid AI API required</small></div></div>
           <div className="section-heading"><div><h2>Explore your modules</h2><p>Purpose-built capabilities, connected through MCP.</p></div></div>
           <div className="module-grid">{modules.map(m => <button className="module-card" key={m.id} onClick={() => navigate(m.id)}><div className="module-card-top"><span className="module-icon"><m.icon size={23} /></span><span className={m.ready ? "chip active" : "chip"}>{m.ready ? "Available" : "Planned"}</span></div><h3>{m.title}</h3><p>{m.subtitle}</p><span className="module-arrow"><ArrowUpRight size={17} /></span></button>)}</div>
         </> : page === "integration" ? <>
