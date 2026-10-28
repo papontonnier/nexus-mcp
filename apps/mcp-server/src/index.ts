@@ -5,8 +5,9 @@ import { z } from "zod";
 import { analyzeDataStructure } from "@nexus/integration-hub";
 import { analyzeCsv } from "@nexus/integration-hub/csv";
 import { compareJsonSchemas } from "@nexus/integration-hub/compare";
+import { registerDeveloperTools } from "./tools/developer.js";
 
-const server = new McpServer({ name: "nexus-mcp", version: "0.2.0" });
+const server = new McpServer({ name: "nexus-mcp", version: "0.6.0" });
 server.tool("analyze_data_structure", "Analyze a JSON document's field structure", {
   json: z.string().max(1_000_000)
 }, async ({ json }) => {
@@ -45,4 +46,6 @@ server.tool("import_knowledge_document", "Import a TXT, MD or PDF document as ba
     return { content: [{ type: "text" as const, text: JSON.stringify(await knowledge.import(name, Buffer.from(contentBase64, "base64"), documentId), null, 2) }] };
   } catch (e) { return { isError: true, content: [{ type: "text" as const, text: String(e) }] }; }
 });
+
+registerDeveloperTools(server);
 await server.connect(new StdioServerTransport());
