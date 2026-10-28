@@ -20,7 +20,8 @@ function parseRows(input: string, delimiter: string): string[][] {
   if (row.length || field !== "") { row.push(field); rows.push(row); }
   return rows;
 }
-export function analyzeCsv(input: string, delimiter = ","): CsvAnalysis {
+/** Parses a CSV document with a header row into validated headers and data rows. */
+export function parseCsv(input: string, delimiter = ","): { headers: string[]; rows: string[][] } {
   if (delimiter.length !== 1 || ['"',"\r","\n"].includes(delimiter)) throw new Error("Invalid delimiter");
   const rows = parseRows(input.replace(/^\uFEFF/, ""), delimiter);
   if (!rows.length || !rows[0].length || rows[0].every(h => !h.trim())) throw new Error("Missing CSV header");
@@ -28,6 +29,10 @@ export function analyzeCsv(input: string, delimiter = ","): CsvAnalysis {
   if (new Set(headers).size !== headers.length || headers.some(h => !h.trim())) throw new Error("CSV headers must be unique and nonempty");
   const data = rows.slice(1);
   if (data.some(r => r.length !== headers.length)) throw new Error("Inconsistent CSV column count");
+  return { headers, rows: data };
+}
+export function analyzeCsv(input: string, delimiter = ","): CsvAnalysis {
+  const { headers, rows: data } = parseCsv(input, delimiter);
   const columns = headers.map((name, index): CsvColumn => {
     const values = data.map(row => row[index].trim());
     const nonempty = values.filter(Boolean);
