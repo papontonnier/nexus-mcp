@@ -1,6 +1,6 @@
 import React from "react";
 import type { LanguageStat } from "@nexus/developer-toolkit/types";
-import { formatBytes, plural } from "./format";
+import { formatBytes, plural } from "../../services/format";
 
 // Six validated categorical slots (see developer.css), then a neutral "Other" fold. Never cycled.
 const SLOTS = 6;

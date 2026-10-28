@@ -19,6 +19,7 @@
     "@vitejs/plugin-react": "^4.3.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@nexus/developer-toolkit": "workspace:*"
+    "@nexus/developer-toolkit": "workspace:*",
+    "@nexus/finance-solutions": "workspace:*"
   }
 }

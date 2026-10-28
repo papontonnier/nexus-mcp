@@ -2,7 +2,7 @@ import React from "react";
 import { CornerLeftUp, File, FileCode2, Folder, FolderGit2, Link2, Lock, Search, TriangleAlert, X } from "lucide-react";
 import type { DevProject, FileEntry, ProjectFileSearch, ProjectTree } from "@nexus/developer-toolkit/types";
 import { developerApi } from "./api";
-import { errorMessage, formatBytes, formatDate, plural } from "./format";
+import { errorMessage, formatBytes, formatDate, plural } from "../../services/format";
 
 const CODE = new Set(["ts", "tsx", "js", "jsx", "mjs", "cjs", "java", "kt", "py", "go", "rs", "cs", "php", "rb", "sql", "vue", "svelte", "css", "scss", "html", "json", "yaml", "yml", "xml", "toml", "gradle", "sh", "ps1"]);
 function EntryIcon({ entry }: { entry: FileEntry }) {
