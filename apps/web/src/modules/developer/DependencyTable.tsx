@@ -1,7 +1,7 @@
 import React from "react";
 import { Package, Search, TriangleAlert } from "lucide-react";
 import type { DependencyAnalysis, DependencyScope } from "@nexus/developer-toolkit/types";
-import { formatNumber, plural } from "./format";
+import { formatNumber, plural } from "../../services/format";
 
 const SCOPE_LABELS: Record<DependencyScope, string> = {
   production: "Production", development: "Development", peer: "Peer", optional: "Optional", provided: "Provided", build: "Build", managed: "Managed"

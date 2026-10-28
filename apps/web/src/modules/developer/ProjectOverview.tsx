@@ -2,7 +2,7 @@ import React from "react";
 import { Boxes, FileCog, Hammer, Layers, Lock, Package, Sparkles, TriangleAlert } from "lucide-react";
 import type { Detection, ProjectInspection } from "@nexus/developer-toolkit/types";
 import LanguageBar from "./LanguageBar";
-import { formatBytes, plural } from "./format";
+import { formatBytes, plural } from "../../services/format";
 
 function DetectionCard({ title, icon: Icon, items, empty, showCategory }: { title: string; icon: React.ComponentType<{ size?: number }>; items: Detection[]; empty: string; showCategory?: boolean }) {
   return <div className="dev-card">

@@ -5,7 +5,7 @@ import { developerApi } from "./api";
 import DependencyTable from "./DependencyTable";
 import FileExplorer from "./FileExplorer";
 import ProjectOverview from "./ProjectOverview";
-import { errorMessage, formatBytes, formatNumber, readPreference, writePreference } from "./format";
+import { errorMessage, formatBytes, formatNumber, readPreference, writePreference } from "../../services/format";
 import "./developer.css";
 
 type Tab = "overview" | "files" | "dependencies";
